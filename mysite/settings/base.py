@@ -51,6 +51,9 @@ INSTALLED_APPS = [
     "apps.core.apps.CoreConfig",    
 ]
 
+
+
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -62,6 +65,10 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'mysite.urls'
+
+
+
+
 
 TEMPLATES = [
     {
@@ -78,19 +85,31 @@ TEMPLATES = [
     },
 ]
 
+# اضافه کن پایین INSTALLED_APPS یا هر جای مناسب
+AUTH_USER_MODEL = 'accounts.CustomUser'
+
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+# دیتا بیس کنار setting ساخته می شود یعنی درون پوشه mysite
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
+# دیتا بیس یک پوشه بالاتر ساخته می شود کنار manage.py این فعلا بهتر است
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR.parent / "db.sqlite3",  # تغییر مهم
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
