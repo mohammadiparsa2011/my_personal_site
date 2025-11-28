@@ -28,12 +28,15 @@ class SocialLink(models.Model):
 class FileUpload(models.Model):
     file = models.FileField(upload_to='core/uploads/')
     uploaded_at = models.DateTimeField(auto_now_add=True)
-    # uploaded_by = models.ForeignKey(
-    #     'accounts.UserProfile',
-    #     on_delete=models.SET_NULL,
-    #     null=True,
-    #     blank=True
-    # )
+    uploaded_by = models.ForeignKey(
+    'accounts.CustomUser',
+    on_delete=models.SET_NULL,
+    null=True,
+    blank=True,
+    related_name='uploaded_files'
+    )
+
+   
 
     def __str__(self):
         return self.file.name

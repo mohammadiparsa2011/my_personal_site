@@ -1,5 +1,6 @@
 from django.test import TestCase
 from apps.core.models import SiteSettings, SocialLink, FileUpload
+from apps.accounts.models import CustomUser
 
 class CoreModelsTestCase(TestCase):
     # تست ایجاد SiteSettings
@@ -34,3 +35,8 @@ class CoreModelsTestCase(TestCase):
         """ایجاد رکورد FileUpload"""
         file = FileUpload.objects.create(file="path/to/file.txt")
         self.assertEqual(file.file.name, "path/to/file.txt")
+
+    def test_file_upload_with_user(self):
+        user = CustomUser.objects.create_user(email="test@example.com", username="testuser", password="pass")
+        file = FileUpload.objects.create(file="dummy.txt", uploaded_by=user)
+        self.assertEqual(file.uploaded_by, user)
