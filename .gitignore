@@ -76,3 +76,6 @@ logs/
 cache/
 tmp/
 temp/
+
+# --- my  PROJECT_PROGRESS ---
+PROJECT_PROGRESS.md
